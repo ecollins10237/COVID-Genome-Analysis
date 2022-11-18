@@ -13,7 +13,8 @@ public class Nucleotide {
     int[] depths;
     int position; //starts at index 1
 
-    int codonFramePosition;
+    int codonNum;
+    String referenceCodon = "";
     final static int MIN_DEPTH = 10;
 
     String gene;
@@ -21,7 +22,6 @@ public class Nucleotide {
     public Nucleotide(String data){
         String[] info = data.split("\t");
         position =Integer.parseInt(info[1]);
-        codonFramePosition = (position-1)%3;
         initNucleotides(info);
         initDepthsAndFrequencies(info);
     }
@@ -110,6 +110,9 @@ public class Nucleotide {
     }
 
     public char[] getMutations(int sampleNum){
+        if (depths[sampleNum]<MIN_DEPTH){
+            return new char[]{nucleotides[0]};
+        }
         int num = 0;
         for (int i = 0; i < frequencies[sampleNum].length;i++){
             if (frequencies[sampleNum][i]>=0.1){

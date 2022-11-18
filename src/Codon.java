@@ -39,14 +39,17 @@ public class Codon {
         }
     }
 
-    public boolean isSynonymous(int sampleNum){
+    public String getSynonymous(int sampleNum){
+        if (mutations[sampleNum].length==1&&mutations[sampleNum][0].equals(reference)){
+            return "";
+        }
         String referenceAmino = codonTable.get(reference);
         for (int i = 0; i < mutations[sampleNum].length;i++){
             if (!codonTable.get(mutations[sampleNum][i]).equals(referenceAmino)){
-                return false;
+                return "N";
             }
         }
-        return true;
+        return "S";
     }
 
     public ArrayList<String> getMutatedAminoAcids(int sampleNum){
@@ -74,7 +77,7 @@ public class Codon {
 
     private static void initCodonTable(){
         codonTable=new Hashtable<>();
-        final String[] aminoNames = {"Phe","Leu","Ser","Tyr","Stop","Cys","Stop","Trp","Leu","Pro","His","Gln","Arg","Ile","Met","Thr","Asn","Lys","Ser","Arg","Val","Ala","Asp","Glu","Gly"};
+        final String[] aminoNames = {"F","L","S","Y","*","C","*","W","L","P","H","Q","R","I","M","T","N","K","S","R","V","A","D","E","G"};
         final int[] codonsPerAmino = {2,2,4,2,2,2,1,1,4,4,2,2,4,3,1,4,2,2,2,2,4,4,2,2,4};
         final char[] bases = {'T','C','A','G'};
         int count = 0;
