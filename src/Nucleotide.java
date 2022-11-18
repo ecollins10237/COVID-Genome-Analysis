@@ -12,7 +12,6 @@ public class Nucleotide {
     double[][] frequencies;
     int[] depths;
     int position; //starts at index 1
-
     int codonNum;
     String referenceCodon = "";
     final static int MIN_DEPTH = 10;

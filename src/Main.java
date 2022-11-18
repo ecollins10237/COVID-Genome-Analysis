@@ -134,9 +134,9 @@ public class Main {
                 String synonomous = codons.get(i).getSynonymous(j);
                 if (!synonomous.equals("")){
                     String acids="";
-                    String[] mutations = codons.get(i).mutations[j];
-                    for (int k = 0; k < mutations.length;k++){
-                        acids+=Codon.codonTable.get(mutations[k]);
+                    ArrayList<String> mutatedAcids = codons.get(i).getMutatedAminoAcids(j);
+                    for (int k = 0; k < mutatedAcids.size();k++){
+                        acids+=mutatedAcids.get(k)+":";
                     }
                     line+=acids.substring(0,acids.length()-1);
                 }
