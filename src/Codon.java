@@ -52,16 +52,6 @@ public class Codon {
         return "S";
     }
 
-    public ArrayList<String> getMutatedAminoAcids(int sampleNum){
-        ArrayList<String> answer = new ArrayList<>();
-        for (int i = 0; i < mutations[sampleNum].length;i++){
-            if (!answer.contains(codonTable.get(mutations[sampleNum][i]))){
-                answer.add(codonTable.get(mutations[sampleNum][i]));
-            }
-        }
-        return answer;
-    }
-
     public static void init(String header){
         initCodonTable();
         initSampleNames(header);

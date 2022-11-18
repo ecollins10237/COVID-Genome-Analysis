@@ -26,13 +26,6 @@ public class Nucleotide {
         initDepthsAndFrequencies(info);
     }
 
-    public Nucleotide(char[] nucleotides, int[][] numSamples, int[] depths, int position){
-        this.nucleotides=nucleotides;
-        this.numSamples = numSamples;
-        this.depths=depths;
-        this.position=position;
-    }
-
     private void initDepthsAndFrequencies(String[] info){
         depths=new int[sampleNames.length];
         numSamples =new int[sampleNames.length][];
@@ -95,65 +88,24 @@ public class Nucleotide {
         return referenceFrequencies;
     }
 
-    public void addNucleotide(char nucleotide, int[] frequency){
-        int index = indexOf(nucleotides,nucleotide);
-        if (index==-1) {
-            nucleotides = append(nucleotides, nucleotide);
-            for (int i = 0; i < numSamples.length; i++) {
-                numSamples[i] = append(numSamples[i], frequency[i]);
-            }
-        } else {
-            for (int i = 0; i < numSamples.length; i++){
-                numSamples[i][index]+=frequency[i];
-            }
-        }
-    }
-
-    public char[] getMutations(int sampleNum){
-        if (depths[sampleNum]<MIN_DEPTH){
+    public char[] getMutations(int sampleNum) {
+        if (depths[sampleNum] < MIN_DEPTH) {
             return new char[]{nucleotides[0]};
         }
         int num = 0;
-        for (int i = 0; i < frequencies[sampleNum].length;i++){
-            if (frequencies[sampleNum][i]>=0.1){
+        for (int i = 0; i < frequencies[sampleNum].length; i++) {
+            if (frequencies[sampleNum][i] >= 0.1) {
                 num++;
             }
         }
         char[] answer = new char[num];
         int index = 0;
-        for (int i = 0; i < frequencies[sampleNum].length;i++){
-            if (frequencies[sampleNum][i]>=0.1){
-                answer[index]=nucleotides[i];
+        for (int i = 0; i < frequencies[sampleNum].length; i++) {
+            if (frequencies[sampleNum][i] >= 0.1) {
+                answer[index] = nucleotides[i];
                 index++;
             }
         }
-        return answer;
-    }
-
-    private int indexOf(char[] array, char value){
-        for (int i = 0; i < array.length;i++){
-            if (array[i]==value){
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    private int[] append(int[] array, int value){
-        int[] answer = new int[array.length+1];
-        for (int i = 0; i < array.length;i++){
-            answer[i]=array[i];
-        }
-        answer[answer.length-1]=value;
-        return answer;
-    }
-
-    private char[] append(char[] array, char value){
-        char[] answer = new char[array.length+1];
-        for (int i = 0; i < array.length;i++){
-            answer[i]=array[i];
-        }
-        answer[answer.length-1]=value;
         return answer;
     }
 }

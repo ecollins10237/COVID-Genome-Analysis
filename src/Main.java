@@ -88,7 +88,8 @@ public class Main {
     }
 
     public static void generateSNSynonymousMatrix(Nucleotide[] nucleotides, String fileName) throws IOException {
-        System.out.println("Generating Synomous Matrix S and N . . . ");
+        System.out.print("Generating Synonomous Matrix S and N . . . ");
+        long startTime =  System.currentTimeMillis();
         ArrayList<Codon> codons = new ArrayList<>();
         for (int i = 0; i < nucleotides.length-3;i+=3){
             if (nucleotides[i].referenceCodon.length()!=0) {
@@ -109,10 +110,12 @@ public class Main {
             fileWriter.write(line.substring(0,line.length()-1)+"\n");
         }
         fileWriter.close();
+        System.out.println(System.currentTimeMillis()-startTime+" milliseconds");
     }
 
     public static void generateAminoAcidSynonymousMatrix(Nucleotide[] nucleotides, String fileName) throws IOException {
-        System.out.println("Generating Synonomous Matrix with Amino Acid Names . . .");
+        System.out.print("Generating Synonomous Matrix with Amino Acid Names . . . ");
+        long startTime = System.currentTimeMillis();
         ArrayList<Codon> codons = new ArrayList<>();
         for (int i = 0; i < nucleotides.length-3;i+=3){
             if (nucleotides[i].referenceCodon.length()!=0) {
@@ -142,10 +145,12 @@ public class Main {
             fileWriter.write(line.substring(0,line.length()-1)+"\n");
         }
         fileWriter.close();
+        System.out.println(System.currentTimeMillis()-startTime+" milliseconds");
     }
 
     public static void generateRAFMatrix(Nucleotide[] nucleotides, String fileName) throws IOException {
-        System.out.println("Generating RAF Matrix . . . ");
+        System.out.print("Generating RAF Matrix . . . ");
+        long startTime = System.currentTimeMillis();
         fileName=fileName.substring(0,fileName.indexOf(".vcf"))+"RAF";
         FileWriter fileWriter = new FileWriter(fileName+".csv");
         String header = "POS,";
@@ -162,5 +167,6 @@ public class Main {
             fileWriter.write(line.substring(0,line.length()-1)+"\n");
         }
         fileWriter.close();
+        System.out.println(System.currentTimeMillis()-startTime+" milliseconds");
     }
 }
