@@ -98,7 +98,7 @@ public class Main {
                 i-=2;
             }
         }
-        fileName=fileName.substring(0,fileName.indexOf(".vcf"))+"SN";
+        fileName=fileName.substring(0,fileName.indexOf(".vcf"))+"SN_"+Nucleotide.MIN_DEPTH+"_"+Nucleotide.MIN_PERCENT;;
         FileWriter fileWriter = new FileWriter(fileName+".csv");
         String header = " ,"+Arrays.toString(Nucleotide.sampleNames).substring(1,Arrays.toString(Nucleotide.sampleNames).length()-1);
         fileWriter.write(header+"\n");
@@ -124,7 +124,7 @@ public class Main {
                 i-=2;
             }
         }
-        fileName=fileName.substring(0,fileName.indexOf(".vcf"))+"SNAminoAcid";
+        fileName=fileName.substring(0,fileName.indexOf(".vcf"))+"SNAminoAcid_"+Nucleotide.MIN_DEPTH+"_"+Nucleotide.MIN_PERCENT;;
         FileWriter fileWriter = new FileWriter(fileName+".csv");
         String header = " ,"+Arrays.toString(Nucleotide.sampleNames).substring(1,Arrays.toString(Nucleotide.sampleNames).length()-1);
         fileWriter.write(header+"\n");
@@ -151,7 +151,7 @@ public class Main {
     public static void generateRAFMatrix(Nucleotide[] nucleotides, String fileName) throws IOException {
         System.out.print("Generating RAF Matrix . . . ");
         long startTime = System.currentTimeMillis();
-        fileName=fileName.substring(0,fileName.indexOf(".vcf"))+"RAF";
+        fileName=fileName.substring(0,fileName.indexOf(".vcf"))+"RAF_"+Nucleotide.MIN_DEPTH+"_"+Nucleotide.MIN_PERCENT;
         FileWriter fileWriter = new FileWriter(fileName+".csv");
         String header = "POS,";
         for (int i = 0; i < Nucleotide.sampleNames.length;i++){

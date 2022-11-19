@@ -14,7 +14,8 @@ public class Nucleotide {
     int position; //starts at index 1
     int codonNum;
     String referenceCodon = "";
-    final static int MIN_DEPTH = 10;
+    final static int MIN_DEPTH = 50;
+    final static double MIN_PERCENT  = 0.05;
 
     String gene;
 
@@ -93,14 +94,14 @@ public class Nucleotide {
         }
         int num = 0;
         for (int i = 0; i < frequencies[sampleNum].length; i++) {
-            if (frequencies[sampleNum][i] >= 0.1) {
+            if (frequencies[sampleNum][i] >= MIN_PERCENT) {
                 num++;
             }
         }
         char[] answer = new char[num];
         int index = 0;
         for (int i = 0; i < frequencies[sampleNum].length; i++) {
-            if (frequencies[sampleNum][i] >= 0.1) {
+            if (frequencies[sampleNum][i] >= MIN_PERCENT) {
                 answer[index] = nucleotides[i];
                 index++;
             }
