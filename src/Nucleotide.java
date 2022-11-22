@@ -14,8 +14,8 @@ public class Nucleotide {
     int position; //starts at index 1
     int codonNum;
     String referenceCodon = "";
-    final static int MIN_DEPTH = 50;
-    final static double MIN_PERCENT  = 0.05;
+    final static int MIN_DEPTH = 10;
+    final static double MIN_PERCENT  = 0.1;
 
     String gene;
 
