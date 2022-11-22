@@ -26,9 +26,7 @@ public class Main {
         while (data.hasNextLine()){
             line=data.nextLine();
             if (!line.contains("INDEL")) {
-                if (line.split("\t")[3].length() == 1) {
                     nucleotides.add(new Nucleotide(line));
-                }
             }
         }
         Nucleotide[] genome = new Nucleotide[nucleotides.size()];
